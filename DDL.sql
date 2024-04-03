@@ -1,4 +1,4 @@
-  CREATE DOMAIN IF NOT EXISTS generoDomain AS smallint
+  /*CREATE DOMAIN  generoDomain AS smallint
   CHECK (VALUE BETWEEN 1 AND 6);
 
   	1- Homem-Cis
@@ -7,7 +7,7 @@
 	4- Mulher-Trans
 	5- Não binario
 	6 - outro
-  
+  */
   
   /* SELECT table_name
 FROM information_schema.tables
@@ -46,6 +46,15 @@ CREATE TABLE IF NOT EXISTS Observacao_Medica (
     Num_Prontuario int,
 	
 	CONSTRAINT chaveObservacao PRIMARY KEY(Num_Prontuario),
+	CONSTRAINT FK_Num_Prontuario_Observacao FOREIGN KEY(Num_Prontuario) REFERENCES Prontuario(Num_Prontuario) 
+	ON DELETE CASCADE ON UPDATE CASCADE	
+);
+CREATE TABLE IF NOT EXISTS Diagnostico (
+	Id_Diagnostico serial,
+    Diagnostico varchar(30), /*acho que ta grande*/
+    Num_Prontuario int,
+	
+	CONSTRAINT chaveDiagnostico PRIMARY KEY(Id_Diagnostico),
 	CONSTRAINT FK_Num_Prontuario_Observacao FOREIGN KEY(Num_Prontuario) REFERENCES Prontuario(Num_Prontuario) 
 	ON DELETE CASCADE ON UPDATE CASCADE	
 );
