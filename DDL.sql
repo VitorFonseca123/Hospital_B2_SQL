@@ -1,5 +1,5 @@
-CREATE DOMAIN IF NOT EXISTS generoDomain AS smallint
-  CHECK (VALUE IN BETWEEN 1 AND 6);
+CREATE DOMAIN generoDomain AS smallint
+  CHECK (VALUE BETWEEN 1 AND 6);
   /*
   	1- Homem-Cis
 	2- Mulher-Cis
@@ -10,9 +10,9 @@ CREATE DOMAIN IF NOT EXISTS generoDomain AS smallint
   */
 CREATE TABLE IF NOT EXISTS Paciente (
     Num_Registro serial ,
-    CPF int NOTNULL UNIQUE,
-    Nome_Paciente varchar() NOTNULL,
-    Sobrenome_Paciente varchar() NOTNULL,
+    CPF int NOT NULL UNIQUE,
+    Nome_Paciente varchar(50) NOT NULL,
+    Sobrenome_Paciente varchar(50) NOT NULL,
     Data_Nascimento date,
     Genero generoDomain,
 	
