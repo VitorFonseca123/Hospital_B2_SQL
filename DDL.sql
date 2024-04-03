@@ -10,10 +10,7 @@
 	6 - outro
   */
   
-  /* SELECT table_name
-FROM information_schema.tables
-WHERE table_schema = 'public'
-AND table_type = 'BASE TABLE';*/
+   
 
 /*PACIENTE*/
 CREATE TABLE IF NOT EXISTS Paciente (
@@ -65,12 +62,12 @@ CREATE TABLE IF NOT EXISTS Diagnostico (
 
 /*MEDICO*/
 
-CREATE DOMAIN EspecialidadesDomain AS VARCHAR(21)
+/*CREATE DOMAIN EspecialidadesDomain AS VARCHAR(21)
     CHECK (VALUE IN ('Cardiologia', 'Dermatologia', 'Pediatria', 'Psiquiatria', 'Ortopedia', 'Ginecologia', 'Urologia',
                       'Oftalmologia', 'Otorrinolaringologia', 'Endocrinologia', 'Neurologia', 'Cirurgia Geral',
                       'Cirurgia Plástica', 'Cirurgia Vascular', 'Radiologia', 'Anestesiologia', 'Oncologia',
                       'Gastroenterologia', 'Hematologia', 'Infectologia', 'Nefrologia', 'Reumatologia'));
-
+*/
 CREATE TABLE IF NOT EXISTS Medico (
     COD_CRM INT,
 	Estado char(2),
@@ -79,9 +76,17 @@ CREATE TABLE IF NOT EXISTS Medico (
 	Especialidade1 EspecialidadesDomain NOT NULL,
 	Especialidade2 EspecialidadesDomain CHECK (Especialidade2 <> Especialidade1),
 	
+	CONSTRAINT chaveMedico PRIMARY KEY(COD_CRM,Estado),
+    CONSTRAINT tamanhoCRM CHECK (COD_CRM >= 0 AND COD_CRM < 1000000)
 	
-    CONSTRAINT tamanhoCRM CHECK (COD_CRM >= 0 AND COD_CRM < 1000000),
-	CONSTRAINT chaveMedico PRIMARY KEY(COD_CRM,Estado)
 	
 );
-
+/*DEPOSITO*/
+CREATE TABLE Deposito(
+	Id_Deposito serial,
+	AndarDep smallint NOT NULL,
+	Cheio bit NOT NULL, --valor 1 = está cheio
+	
+	CONSTRAINT chaveDeposito PRIMARY KEY(Id_Deposito),
+	CONSTRAINT MaxAndares CHECK (AndarDep > 0 AND AndarDep < 8)
+);
