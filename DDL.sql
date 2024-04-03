@@ -23,6 +23,14 @@ CREATE TABLE IF NOT EXISTS Telefone (
     Num_Contato int,
 	
 	CONSTRAINT chaveTelefone PRIMARY KEY(Num_Contato, Num_Registro),
-	CONSTRAINT Num_Registro FOREIGN KEY(Num_Registro) REFERENCES Paciente(Num_Registro) 
+	CONSTRAINT FK_Num_Registro_Telefone FOREIGN KEY(Num_Registro) REFERENCES Paciente(Num_Registro) 
+	ON DELETE CASCADE ON UPDATE CASCADE	
+);
+CREATE TABLE IF NOT EXISTS Prontuario (
+    Num_Registro int,
+    Num_Prontuario serial,
+	
+	CONSTRAINT chaveProntuario PRIMARY KEY(Num_Prontuario, Num_Registro),
+	CONSTRAINT FK_Num_Registro_Prontuario FOREIGN KEY(Num_Registro) REFERENCES Paciente(Num_Registro) 
 	ON DELETE CASCADE ON UPDATE CASCADE	
 );
