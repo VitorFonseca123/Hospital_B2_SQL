@@ -90,3 +90,11 @@ CREATE TABLE Deposito(
 	CONSTRAINT chaveDeposito PRIMARY KEY(Id_Deposito),
 	CONSTRAINT MaxAndares CHECK (AndarDep > 0 AND AndarDep < 8)
 );
+CREATE TABLE Material(
+	Id_Material,
+	Marca_Registrada,
+	Lote,
+	Qtd_Atual,
+	
+	
+);
