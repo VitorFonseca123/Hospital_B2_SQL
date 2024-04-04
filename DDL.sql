@@ -123,3 +123,13 @@ CREATE TABLE IF NOT EXISTS Material_Esta_Em(
 	CONSTRAINT FK_Deposito FOREIGN KEY(Id_Deposito) REFERENCES Deposito(Id_Deposito) 
 		ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+/*Procedimento*/
+CREATE TABLE IF NOT EXISTS Procedimento(
+	Id_Procedimento serial,
+	Num_Registro_Pac int NOT NULL,
+	Data_Hora_Entrada timestamp NOT NULL,
+	Data_Hora_Saida timestamp,
+	
+	CONSTRAINT chaveProcedimento PRIMARY KEY(Id_Procedimento)
+);
