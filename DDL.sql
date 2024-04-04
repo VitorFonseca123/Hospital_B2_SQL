@@ -148,6 +148,8 @@ CREATE TABLE IF NOT EXISTS Cirurgia(
 	Complicacao text,
 	--Gravidade ??? nao sei
 	
-	
+	CONSTRAINT chaveCirurgia PRIMARY KEY(Id_Procedimento),
+	CONSTRAINT FK_Procedimento_Cirurgia FOREIGN KEY(Id_Procedimento) REFERENCES Procedimento(Id_Procedimento) 
+		ON DELETE CASCADE ON UPDATE CASCADE
 	
 );
