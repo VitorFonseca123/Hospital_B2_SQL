@@ -133,3 +133,12 @@ CREATE TABLE IF NOT EXISTS Procedimento(
 	
 	CONSTRAINT chaveProcedimento PRIMARY KEY(Id_Procedimento)
 );
+CREATE TABLE IF NOT EXISTS Utiliza_Procedimento(
+	Id_Material int NOT NULL,
+	Id_Procedimento int NOT NULL,
+	
+	CONSTRAINT FK_Material_Utiliza FOREIGN KEY(Id_Material) REFERENCES Material(Id_Material) 
+		ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT FK_Procedimento_Utiliza FOREIGN KEY(Id_Procedimento) REFERENCES Procedimento(Id_Procedimento) 
+		ON DELETE CASCADE ON UPDATE CASCADE
+);
