@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS Genero(
 	Id_Genero serial,
-	Nome_Genero varchar(12),
+	Nome_Genero varchar(12) NOT NULL,
 	
 	CONSTRAINT chaveGenero PRIMARY KEY(Id_Genero)
 );
