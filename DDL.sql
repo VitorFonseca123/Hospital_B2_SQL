@@ -1,43 +1,35 @@
- /*CREATE DATABASE  HospitalBD2;
- CREATE DOMAIN  generoDomain AS smallint
-  CHECK (VALUE BETWEEN 1 AND 6);
-
-  	1- Homem-Cis
-	2- Mulher-Cis
-	3- Homem-Trans
-	4- Mulher-Trans
-	5- Não binario
-	6 - outro
-  */
-  
-   
-
-/*PACIENTE*/
+CREATE TABLE IF NOT EXISTS Genero(
+	Id_Genero serial,
+	Nome_Genero varchar(10)
+	
+);
 CREATE TABLE IF NOT EXISTS Paciente (
     Num_Registro serial ,
     CPF int NOT NULL UNIQUE,
     Nome_Paciente varchar(50) NOT NULL,
     Sobrenome_Paciente varchar(50) NOT NULL,
     Data_Nascimento date NOT NULL,
-    Genero generoDomain NOT NULL,
+    GeneroPaciente varchar(10)
 	
-	CONSTRAINT RegistroPaciente PRIMARY KEY(Num_Registro)
+	CONSTRAINT RegistroPaciente PRIMARY KEY(Num_Registro),
+	CONSTRAINT GeneroPaciente_FK FOREIGN KEY(GeneroPaciente) REFERENCES Genero(Id_Genero) 
+		ON DELETE SET NULL ON UPDATE CASCADE	
 );
 CREATE TABLE IF NOT EXISTS Telefone (
     Num_Registro int NOT NULL,
     Num_Contato int,
 	
-	CONSTRAINT chaveTelefone PRIMARY KEY(Num_Contato),
 	CONSTRAINT FK_Num_Registro_Telefone FOREIGN KEY(Num_Registro) REFERENCES Paciente(Num_Registro) 
-	ON DELETE CASCADE ON UPDATE CASCADE	
+		ON DELETE CASCADE ON UPDATE CASCADE	
+	CONSTRAINT chaveTelefone PRIMARY KEY(Num_Contato, Num_Registro),
 );
 CREATE TABLE IF NOT EXISTS Prontuario (
     Num_Registro int NOT NULL,
     Num_Prontuario serial,
 	
-	CONSTRAINT chaveProntuario PRIMARY KEY(Num_Prontuario),
 	CONSTRAINT FK_Num_Registro_Prontuario FOREIGN KEY(Num_Registro) REFERENCES Paciente(Num_Registro) 
-	ON DELETE CASCADE ON UPDATE CASCADE	
+		ON DELETE CASCADE ON UPDATE CASCADE	
+	CONSTRAINT chaveProntuario PRIMARY KEY(Num_Prontuario, Num_Registro),
 );
 
 CREATE TABLE IF NOT EXISTS Observacao_Medica (
@@ -45,9 +37,9 @@ CREATE TABLE IF NOT EXISTS Observacao_Medica (
     Observacao text NOT NULL,
     Num_Prontuario int NOT NULL,
 	
-	CONSTRAINT chaveObservacao PRIMARY KEY(Num_Prontuario),
+	CONSTRAINT chaveObservacao PRIMARY KEY(Id_Observacao),
 	CONSTRAINT FK_Num_Prontuario_Observacao FOREIGN KEY(Num_Prontuario) REFERENCES Prontuario(Num_Prontuario) 
-	ON DELETE CASCADE ON UPDATE CASCADE	
+		ON DELETE CASCADE ON UPDATE CASCADE	
 );
 CREATE TABLE IF NOT EXISTS Diagnostico (
 	Id_Diagnostico serial,
@@ -56,7 +48,7 @@ CREATE TABLE IF NOT EXISTS Diagnostico (
 	
 	CONSTRAINT chaveDiagnostico PRIMARY KEY(Id_Diagnostico),
 	CONSTRAINT FK_Num_Prontuario_Observacao FOREIGN KEY(Num_Prontuario) REFERENCES Prontuario(Num_Prontuario) 
-	ON DELETE CASCADE ON UPDATE CASCADE	
+		ON DELETE CASCADE ON UPDATE CASCADE	
 );
 
 
@@ -68,6 +60,10 @@ CREATE TABLE IF NOT EXISTS Diagnostico (
                       'Cirurgia Plástica', 'Cirurgia Vascular', 'Radiologia', 'Anestesiologia', 'Oncologia',
                       'Gastroenterologia', 'Hematologia', 'Infectologia', 'Nefrologia', 'Reumatologia'));
 */
+CREATE TABLE IF NOT EXISTS Especialidade(
+	
+
+);
 CREATE TABLE IF NOT EXISTS Medico (
     COD_CRM INT,
 	Estado char(2),
