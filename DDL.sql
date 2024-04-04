@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS Medico (
 	CONSTRAINT FK_Num_Esp2 FOREIGN KEY(Especialidade2_FK) REFERENCES Especialidade(Id_Especialidade) 
 		ON DELETE SET NULL ON UPDATE CASCADE
 );
-/*DEPOSITO*/
+/*Material*/
 CREATE TABLE Deposito(
 	Id_Deposito serial,
 	AndarDep smallint NOT NULL,
@@ -91,4 +91,12 @@ CREATE TABLE Deposito(
 	
 	CONSTRAINT chaveDeposito PRIMARY KEY(Id_Deposito),
 	CONSTRAINT MaxAndares CHECK (AndarDep > 0 AND AndarDep < 8)
+);
+CREATE TABLE Material(
+	Id_Material serial,
+	Marca_Registrada varchar(20),
+	Lote varchar(10),
+	Qtd_Atual smallint,
+	
+	CONSTRAINT chaveMaterial PRIMARY KEY(Id_Material)
 );
