@@ -142,3 +142,6 @@ CREATE TABLE IF NOT EXISTS Utiliza_Procedimento(
 	CONSTRAINT FK_Procedimento_Utiliza FOREIGN KEY(Id_Procedimento) REFERENCES Procedimento(Id_Procedimento) 
 		ON DELETE CASCADE ON UPDATE CASCADE
 );
+CREATE TABLE IF NOT EXISTS Cirurgia(
+	
+);
