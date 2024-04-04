@@ -25,19 +25,19 @@ CREATE TABLE IF NOT EXISTS Telefone (
 	CONSTRAINT chaveTelefone PRIMARY KEY(Num_Contato, Num_Registro)
 );
 CREATE TABLE IF NOT EXISTS Observacao_Medica (
-    Id_Observacao serial PRIMARY KEY,
+    Id_Observacao serial,
     Observacao varchar(30) NOT NULL,
     Num_Prontuario int NOT NULL,
 	Num_Registro int NOT NULL,
 	
-	CONSTRAINT chaveObservacao PRIMARY KEY(Num_Registro, Id_Observacao),
-	CONSTRAINT FK_Num_Registro_Observacao FOREIGN KEY(Num_Registro) 
-		REFERENCES Paciente(Num_Registro) 
-		ON DELETE CASCADE ON UPDATE CASCADE
+	
+	CONSTRAINT FK_Num_Registro_Observacao FOREIGN KEY(Num_Registro) REFERENCES Paciente(Num_Registro) 
+		ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT chaveObservacao PRIMARY KEY(Id_Observacao, Num_Registro)
 );
 
 CREATE TABLE IF NOT EXISTS Diagnostico (
-    Id_Diagnostico serial PRIMARY KEY,
+    Id_Diagnostico serial,
     Diagnostico varchar(20) NOT NULL,
     Num_Prontuario int NOT NULL,
 	Num_Registro int NOT NULL,
@@ -154,13 +154,13 @@ CREATE TABLE IF NOT EXISTS Tipo_Exame(
 CREATE TABLE IF NOT EXISTS Exame(
 	Id_Procedimento int,
 	Nome_Exame varchar(20) NOT NULL,
-	Id_TipoExame varchar(15) NOT NULL,
+	Id_TipoExame int NOT NULL,
 	
-	CONSTRAINT chaveCirurgia PRIMARY KEY(Id_Procedimento),
+	CONSTRAINT chaveExame PRIMARY KEY(Id_Procedimento),
 	CONSTRAINT FK_Procedimento_Cirurgia FOREIGN KEY(Id_Procedimento) REFERENCES Procedimento(Id_Procedimento) 
 		ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT FK_Exame_TipoExame FOREIGN KEY(Id_TipoExame) REFERENCES Tipo_Exame(Id_TipoExame) 
-		ON SET NULL CASCADE ON UPDATE CASCADE
+		ON DELETE SET NULL  ON UPDATE CASCADE
 );
 CREATE TABLE IF NOT EXISTS Resultado(
 	Id_Procedimento int NOT NULL,
@@ -168,7 +168,7 @@ CREATE TABLE IF NOT EXISTS Resultado(
 	Nome_Resultado varchar(10),
 	Resultado_Text varchar(50),
 	
-	CONSTRAINT chaveCirurgia PRIMARY KEY(Id_Procedimento),
+	CONSTRAINT chaveResultado PRIMARY KEY(Id_Procedimento),
 	CONSTRAINT FK_Resultado_Exame FOREIGN KEY(Id_Procedimento) REFERENCES Exame(Id_Procedimento) 
-		ON SET CASCADE CASCADE ON UPDATE CASCADE
+		ON DELETE SET NULL ON UPDATE CASCADE
 );
