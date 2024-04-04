@@ -7,8 +7,8 @@ CREATE TABLE IF NOT EXISTS Genero(
 CREATE TABLE IF NOT EXISTS Paciente (
     Num_Registro serial,
     CPF int NOT NULL UNIQUE,
-    Nome_Paciente varchar(50) NOT NULL,
-    Sobrenome_Paciente varchar(50) NOT NULL,
+    Nome_Paciente varchar(15) NOT NULL,
+    Sobrenome_Paciente varchar(25) NOT NULL,
     Data_Nascimento date NOT NULL,
     GeneroPaciente int,
 	
@@ -62,8 +62,8 @@ CREATE TABLE IF NOT EXISTS Especialidade(
 CREATE TABLE IF NOT EXISTS Medico (
     COD_CRM INT,
 	Estado char(2),
-	Nome_Medico varchar(50) NOT NULL,
-    Sobrenome_Medico varchar(50) NOT NULL,
+	Nome_Medico varchar(15) NOT NULL,
+    Sobrenome_Medico varchar(25) NOT NULL,
 	Especialidade1_FK int,
 	Especialidade2_FK int CHECK (Especialidade2_FK <> Especialidade1_FK),
 	
@@ -171,4 +171,30 @@ CREATE TABLE IF NOT EXISTS Resultado(
 	CONSTRAINT chaveResultado PRIMARY KEY(Id_Procedimento),
 	CONSTRAINT FK_Resultado_Exame FOREIGN KEY(Id_Procedimento) REFERENCES Exame(Id_Procedimento) 
 		ON DELETE SET NULL ON UPDATE CASCADE
+);
+CREATE TABLE IF NOT EXISTS Internacao(
+	Id_Procedimento serial,
+	Motivo_Internacao varchar(15),
+	Estado_Paciente varchar(8),
+	
+	CONSTRAINT chaveInternacao PRIMARY KEY(Id_Procedimento),
+	CONSTRAINT FK_Procedimento_Internacao FOREIGN KEY(Id_Procedimento) REFERENCES Procedimento(Id_Procedimento) 
+		ON DELETE CASCADE ON UPDATE CASCADE
+);
+CREATE TABLE IF NOT EXISTS Enfermeiro(
+	COREN varchar(10),
+	Estado char(2) NOT NULL,
+	Nome_Enfermeiro varchar(15) NOT NULL,
+	Sobrenome_Enfermeiro varchar(20) NOT NULL,
+	
+	CONSTRAINT chaveEnfermeiro PRIMARY KEY(COREN)
+);
+CREATE TABLE IF NOT EXISTS Acompanha_Internacao(
+	COREN varchar(10) NOT NULL,
+	Id_Procedimento int NOT NULL,
+	
+	CONSTRAINT FK_Procedimento_Acompanha FOREIGN KEY(Id_Procedimento) REFERENCES Internacao(Id_Procedimento) 
+		ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT FK_Enfermeiro_Acompanha FOREIGN KEY(COREN) REFERENCES Enfermeiro(COREN) 
+		ON DELETE CASCADE ON UPDATE CASCADE
 );
