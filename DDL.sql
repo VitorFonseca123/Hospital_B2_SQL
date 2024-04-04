@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS Medico (
 		ON DELETE SET NULL ON UPDATE CASCADE
 );
 /*Material*/
-CREATE TABLE Deposito(
+CREATE TABLE IF NOT EXISTS Deposito(
 	Id_Deposito serial,
 	AndarDep smallint NOT NULL,
 	Cheio bit NOT NULL, --valor 1 = está cheio
@@ -92,11 +92,34 @@ CREATE TABLE Deposito(
 	CONSTRAINT chaveDeposito PRIMARY KEY(Id_Deposito),
 	CONSTRAINT MaxAndares CHECK (AndarDep > 0 AND AndarDep < 8)
 );
-CREATE TABLE Material(
+CREATE TABLE IF NOT EXISTS Material(
 	Id_Material serial,
+	Nome_Material varchar(20),
 	Marca_Registrada varchar(20),
 	Lote varchar(10),
 	Qtd_Atual smallint,
 	
 	CONSTRAINT chaveMaterial PRIMARY KEY(Id_Material)
+);
+CREATE TABLE IF NOT EXISTS Medicamento(
+	Id_Material int,
+	Nome_Generico varchar(20),
+	Nome_Quimico varchar(20),
+	Validade date NOT NULL,
+	Grupo_Terapeutico varchar(20) NOT NULL,
+	Laboratorio varchar(20) NOT NULL,
+	
+	CONSTRAINT chaveMedicamento PRIMARY KEY(Id_Material),
+	CONSTRAINT FK_Num_Material_Medicamento FOREIGN KEY(Id_Material) REFERENCES Material(Id_Material) 
+		ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Material_Esta_Em(
+	Id_Material int NOT NULL,
+	id_Deposito int NOT NULL,
+	
+	CONSTRAINT FK_Material FOREIGN KEY(Id_Material) REFERENCES Material(Id_Material) 
+		ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT FK_Deposito FOREIGN KEY(Id_Deposito) REFERENCES Deposito(Id_Deposito) 
+		ON DELETE CASCADE ON UPDATE CASCADE
 );
