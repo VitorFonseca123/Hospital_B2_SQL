@@ -153,3 +153,14 @@ CREATE TABLE IF NOT EXISTS Cirurgia(
 		ON DELETE CASCADE ON UPDATE CASCADE
 	
 );
+CREATE TABLE IF NOT EXISTS Exame(
+	Id_Procedimento int,
+	Nome_Exame varchar(20) NOT NULL,
+	
+	CONSTRAINT chaveCirurgia PRIMARY KEY(Id_Procedimento),
+	CONSTRAINT FK_Procedimento_Cirurgia FOREIGN KEY(Id_Procedimento) REFERENCES Procedimento(Id_Procedimento) 
+		ON DELETE CASCADE ON UPDATE CASCADE
+);
+CREATE TABLE IF NOT EXISTS Resultado(
+	
+);
