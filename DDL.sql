@@ -143,5 +143,11 @@ CREATE TABLE IF NOT EXISTS Utiliza_Procedimento(
 		ON DELETE CASCADE ON UPDATE CASCADE
 );
 CREATE TABLE IF NOT EXISTS Cirurgia(
+	Id_Procedimento int,
+	Nome_Cirurgia varchar(20) NOT NULL,
+	Complicacao text,
+	--Gravidade ??? nao sei
+	
+	
 	
 );
