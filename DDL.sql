@@ -27,7 +27,6 @@ CREATE TABLE IF NOT EXISTS Telefone (
 CREATE TABLE IF NOT EXISTS Observacao_Medica (
     Id_Observacao serial,
     Observacao varchar(30) NOT NULL,
-    Num_Prontuario int NOT NULL,
 	Num_Registro int NOT NULL,
 	
 	
@@ -39,7 +38,6 @@ CREATE TABLE IF NOT EXISTS Observacao_Medica (
 CREATE TABLE IF NOT EXISTS Diagnostico (
     Id_Diagnostico serial,
     Diagnostico varchar(20) NOT NULL,
-    Num_Prontuario int NOT NULL,
 	Num_Registro int NOT NULL,
 	
 	CONSTRAINT chaveDiagnostico PRIMARY KEY(Num_Registro, Id_Diagnostico),
