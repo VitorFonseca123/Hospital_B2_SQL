@@ -98,3 +98,4 @@ INSERT INTO Paciente VALUES (DEFAULT, 66677788898, 'Bruno', 'Cardoso', '1976-11-
 INSERT INTO Paciente VALUES (DEFAULT, 66677788893, 'Nicolas', 'Martins', '2000-11-21', 1);
 INSERT INTO Paciente VALUES (DEFAULT, 66677788893, 'Nicolas', 'Martins', '2000-11-21', 1);
 INSERT INTO Paciente VALUES (DEFAULT, 18745362085, 'Jefferson', 'Cardoso', '1998-04-03', 1);
+INSERT INTO Paciente VALUES (DEFAULT, 08745618923, 'Vitor', 'da Fonseca Rodrigues', '2003-11-26', 1);
