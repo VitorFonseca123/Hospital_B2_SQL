@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS Genero(
 );
 CREATE TABLE IF NOT EXISTS Paciente (
     Num_Registro serial,
-    CPF char(11) NOT NULL UNIQUE,
+    CPF numeric(11) NOT NULL UNIQUE,
     Nome_Paciente varchar(15) NOT NULL,
     Sobrenome_Paciente varchar(25) NOT NULL,
     Data_Nascimento date NOT NULL,
