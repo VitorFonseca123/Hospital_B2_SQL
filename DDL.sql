@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS Telefone (
 );
 CREATE TABLE IF NOT EXISTS Observacao_Medica (
     Id_Observacao serial,
-    Observacao varchar(30) NOT NULL,
+    Observacao varchar(255) NOT NULL,
 	Num_Registro int NOT NULL,
 	
 	
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS Diagnostico (
 CREATE TABLE IF NOT EXISTS Especialidade(
 	Id_Especialidade serial,
 	Nome_Especialidade varchar(21) NOT NULL,
-	Descricao_Esp varchar(50) NOT NULL,
+	Descricao_Esp varchar(255) NOT NULL,
 	
 	CONSTRAINT chaveEspecialidade PRIMARY KEY(Id_Especialidade)
 
@@ -135,7 +135,7 @@ CREATE TABLE IF NOT EXISTS Utiliza_Procedimento(
 CREATE TABLE IF NOT EXISTS Cirurgia(
 	Id_Procedimento int,
 	Nome_Cirurgia varchar(20) NOT NULL,
-	Complicacao varchar(30),
+	Complicacao varchar(255),
 	Gravidade varchar(10),
 	
 	CONSTRAINT chaveCirurgia PRIMARY KEY(Id_Procedimento),
@@ -172,7 +172,7 @@ CREATE TABLE IF NOT EXISTS Resultado(
 );
 CREATE TABLE IF NOT EXISTS Internacao(
 	Id_Procedimento serial,
-	Motivo_Internacao varchar(15),
+	Motivo_Internacao varchar(30),
 	Estado_Paciente varchar(8),
 	
 	CONSTRAINT chaveInternacao PRIMARY KEY(Id_Procedimento),
