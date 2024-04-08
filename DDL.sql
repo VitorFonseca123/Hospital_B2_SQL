@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS Procedimento(
 	Data_Hora_Saida timestamp,
 	
 	CONSTRAINT chaveProcedimento PRIMARY KEY(Id_Procedimento),
-	CONSTRAINT FK_Procedimento_Paciente FOREIGN KEY(Num_Registro_Pac) REFERENCES Paciente(Num_Registro_Pac) 
+	CONSTRAINT FK_Procedimento_Paciente FOREIGN KEY(Num_Registro_Pac) REFERENCES Paciente(Num_Registro ) 
 		ON DELETE CASCADE ON UPDATE CASCADE
 );
 CREATE TABLE IF NOT EXISTS Utiliza_Procedimento(
