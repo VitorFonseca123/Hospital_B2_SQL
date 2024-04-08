@@ -121,7 +121,9 @@ CREATE TABLE IF NOT EXISTS Procedimento(
 	Data_Hora_Entrada timestamp NOT NULL,
 	Data_Hora_Saida timestamp,
 	
-	CONSTRAINT chaveProcedimento PRIMARY KEY(Id_Procedimento)
+	CONSTRAINT chaveProcedimento PRIMARY KEY(Id_Procedimento),
+	CONSTRAINT FK_Procedimento_Paciente FOREIGN KEY(Num_Registro_Pac) REFERENCES Paciente(Num_Registro_Pac) 
+		ON DELETE CASCADE ON UPDATE CASCADE
 );
 CREATE TABLE IF NOT EXISTS Utiliza_Procedimento(
 	Id_Material int NOT NULL,
@@ -195,4 +197,3 @@ CREATE TABLE IF NOT EXISTS Acompanha_Internacao(
 		ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT FK_Enfermeiro_Acompanha FOREIGN KEY(COREN) REFERENCES Enfermeiro(COREN) 
 		ON DELETE CASCADE ON UPDATE CASCADE
-);
