@@ -1,5 +1,4 @@
-alter table internacao
-alter column motivo_internacao type varchar(100);
+
 WITH novos_procedimentos AS (
   INSERT INTO procedimento (Num_Registro_Pac, Data_Hora_Entrada, Data_Hora_Saida)
   SELECT
