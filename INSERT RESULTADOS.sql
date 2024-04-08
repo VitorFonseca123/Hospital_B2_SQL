@@ -1,10 +1,4 @@
 
-Alter table Resultado
-alter column Nome_Resultado type varchar(20);
-alter table Resultado
-DROP CONSTRAINT chaveResultado;
-alter table Resultado
-add  CONSTRAINT chaveResultado PRIMARY KEY(Id_resultado);
 INSERT INTO Resultado (Id_Resultado, id_procedimento, Nome_Resultado, Resultado_Text)
 VALUES 
     (DEFAULT,(SELECT id_procedimento FROM Exame WHERE Nome_Exame = 'Hemograma'), 'Eritrograma', 'Hemoglobina:11,8;Eritrocitos:4,26;Hematócrito:40%'),

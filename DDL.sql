@@ -168,7 +168,7 @@ CREATE TABLE IF NOT EXISTS Resultado(
 	Nome_Resultado varchar(10),
 	Resultado_Text varchar(50),
 	
-	CONSTRAINT chaveResultado PRIMARY KEY(Id_Procedimento),
+	CONSTRAINT chaveResultado PRIMARY KEY(id_resultado),
 	CONSTRAINT FK_Resultado_Exame FOREIGN KEY(Id_Procedimento) REFERENCES Exame(Id_Procedimento) 
 		ON DELETE SET NULL ON UPDATE CASCADE
 );
