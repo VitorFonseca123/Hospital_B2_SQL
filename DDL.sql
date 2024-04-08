@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS Utiliza_Procedimento(
 );
 CREATE TABLE IF NOT EXISTS Cirurgia(
 	Id_Procedimento int,
-	Nome_Cirurgia varchar(20) NOT NULL,
+	Nome_Cirurgia varchar(25) NOT NULL,
 	Complicacao varchar(255),
 	Gravidade varchar(10),
 	
