@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS Cirurgia_Realizada(
 );
 CREATE TABLE IF NOT EXISTS Tipo_Exame(
 	Id_TipoExame serial,
-	Nome_TipoExame varchar(20) NOT NULL,
+	Nome_TipoExame varchar(20) NOT NULL UNIQUE,
 	
 	CONSTRAINT chaveTipoExame PRIMARY KEY(Id_TipoExame)
 );
@@ -182,7 +182,6 @@ CREATE TABLE IF NOT EXISTS Exame_Realizado(
 CREATE TABLE IF NOT EXISTS Resultado(
 	Id_Procedimento int NOT NULL,
 	Id_Resultado serial,
-	Nome_Resultado varchar(10),
 	Resultado_Text varchar(50),
 	
 	CONSTRAINT chaveResultado PRIMARY KEY(id_resultado),
