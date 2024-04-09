@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS Diagnostico (
 
 CREATE TABLE IF NOT EXISTS Especialidade(
 	Id_Especialidade serial,
-	Nome_Especialidade varchar(21) NOT NULL,
+	Nome_Especialidade varchar(21) NOT NULL unique,
 	Descricao_Esp varchar(255) NOT NULL,
 	
 	CONSTRAINT chaveEspecialidade PRIMARY KEY(Id_Especialidade)
