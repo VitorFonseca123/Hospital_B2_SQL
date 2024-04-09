@@ -170,14 +170,14 @@ CREATE TABLE IF NOT EXISTS Exame_Categoria(
 );
 CREATE TABLE IF NOT EXISTS Exame_Realizado(
 	Id_Procedimento int,
-	Nome_Exame varchar(20) NOT NULL,
-	Id_TipoExame smallint NOT NULL,
+	Id_Exame smallint NOT NULL,
 	
-	CONSTRAINT chaveExame PRIMARY KEY(Id_Procedimento),
-	CONSTRAINT FK_Procedimento_Cirurgia FOREIGN KEY(Id_Procedimento) REFERENCES Procedimento(Id_Procedimento) 
+	CONSTRAINT chaveExameRealizado PRIMARY KEY(Id_Procedimento),
+	CONSTRAINT FK_Exame_Procedimento FOREIGN KEY(Id_Procedimento) REFERENCES Procedimento(Id_Procedimento) 
 		ON DELETE CASCADE ON UPDATE CASCADE,
-	CONSTRAINT FK_Exame_TipoExame FOREIGN KEY(Id_TipoExame) REFERENCES Tipo_Exame(Id_TipoExame) 
-		ON DELETE SET NULL  ON UPDATE CASCADE
+	CONSTRAINT FK_Exame_Categoria FOREIGN KEY(Id_Exame) REFERENCES Exame_Categoria(Id_Exame) 
+		ON DELETE CASCADE ON UPDATE CASCADE
+	
 );
 CREATE TABLE IF NOT EXISTS Resultado(
 	Id_Procedimento int NOT NULL,
