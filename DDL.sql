@@ -227,8 +227,8 @@ CREATE TABLE IF NOT EXISTS Prescricao(
 	Id_Prescricao serial,
 	Id_Procedimento int NOT NULL,
 	Data_Validade timestamp not null,
-	Recomendacao_Medica varchar(30)
-	Nome_Medicamento_Presc varchar(30),
+	Recomendacao_Medica varchar(45)
+	Nome_Medicamento_Presc varchar(20),
 	
 	CONSTRAINT chavePresc PRIMARY KEY(Id_Prescricao),
 	CONSTRAINT FK_PRESC_CONSULTA FOREIGN KEY(Id_Procedimento) REFERENCES Consulta(Id_Procedimento) 
