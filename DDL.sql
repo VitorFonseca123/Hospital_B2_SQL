@@ -136,7 +136,7 @@ CREATE TABLE IF NOT EXISTS Utiliza_Procedimento(
 );
 CREATE TABLE IF NOT EXISTS Cirurgia(
 	Id_Cirurgia serial,
-	Nome_Cirurgia varchar(25) Unique,
+	Nome_Cirurgia varchar(30) Unique,
 	
 	CONSTRAINT chaveCirurgia PRIMARY KEY(Id_Cirurgia)
 );
