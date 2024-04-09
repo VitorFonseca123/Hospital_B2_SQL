@@ -19,7 +19,7 @@ WITH new_procedimentos AS (
     RETURNING Id_Procedimento
 )
 INSERT INTO Consulta (Data_Retorno, Motivo_Consulta)
-	SELECT np.Id_Procedimento, 
+	SELECT Id_Procedimento, 
 	 CURRENT_TIMESTAMP - INTERVAL '30 days' * RANDOM(),
-	 'Motivo' || FLOOR(RANDOM()*100)+1,
-FROM new_procedimentos np;
+	 'Motivo' || FLOOR(RANDOM()*100)+1
+FROM new_procedimentos;
