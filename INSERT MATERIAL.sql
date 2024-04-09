@@ -97,5 +97,6 @@ INSERT INTO Material VALUES
     (DEFAULT, 'Compressa Estéril', 'QuickCure', 'JKL017', 350),
 	(DEFAULT, 'Papel para impressão', 'Paper', '1589d4', 100),
 	(DEFAULT, 'Lampada Caixa', 'OuroLux', 'JD1234', 40),
-    (DEFAULT, 'Cateter', 'CuraPro', 'MNO350', 120);
+    (DEFAULT, 'Cateter', 'CuraPro', 'MNO350', 120),
+	(DEFAULT, 'Linha Rolo', 'Fios Doflamingo', 'DRESS1', 120);
 	
