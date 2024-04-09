@@ -227,7 +227,7 @@ CREATE TABLE IF NOT EXISTS Prescricao(
 	Id_Prescricao serial,
 	Id_Procedimento int NOT NULL,
 	Data_Validade timestamp not null,
-	Recomendacao_Uso varchar(30)
+	Recomendacao_Medica varchar(30)
 	Nome_Medicamento_Presc varchar(30),
 	
 	CONSTRAINT chavePresc PRIMARY KEY(Id_Prescricao),
