@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS Paciente (
     Nome_Paciente varchar(15) NOT NULL,
     Sobrenome_Paciente varchar(25) NOT NULL,
     Data_Nascimento date NOT NULL,
-    GeneroPaciente int,
+    GeneroPaciente smallint,
 	
 	CONSTRAINT RegistroPaciente PRIMARY KEY(Num_Registro),
 	CONSTRAINT GeneroPaciente_FK FOREIGN KEY(GeneroPaciente) REFERENCES Genero(Id_Genero) 
@@ -58,12 +58,12 @@ CREATE TABLE IF NOT EXISTS Especialidade(
 
 );
 CREATE TABLE IF NOT EXISTS Medico (
-    COD_CRM INT,
+    COD_CRM numeric(6),
 	Estado char(2),
 	Nome_Medico varchar(15) NOT NULL,
     Sobrenome_Medico varchar(25) NOT NULL,
-	Especialidade1_FK int,
-	Especialidade2_FK int CHECK (Especialidade2_FK <> Especialidade1_FK),
+	Especialidade1_FK smallint,
+	Especialidade2_FK smallint CHECK (Especialidade2_FK <> Especialidade1_FK),
 	
 	CONSTRAINT chaveMedico PRIMARY KEY(COD_CRM,Estado),
     CONSTRAINT tamanhoCRM CHECK (COD_CRM >= 0 AND COD_CRM < 1000000),
@@ -135,14 +135,22 @@ CREATE TABLE IF NOT EXISTS Utiliza_Procedimento(
 		ON DELETE CASCADE ON UPDATE CASCADE
 );
 CREATE TABLE IF NOT EXISTS Cirurgia(
-	Id_Procedimento int,
-	Nome_Cirurgia varchar(25) NOT NULL,
+	Id_Cirurgia serial,
+	Nome_Cirurgia varchar(25) Unique,
+	
+	CONSTRAINT chaveCirurgia PRIMARY KEY(Id_Cirurgia)
+);
+CREATE TABLE IF NOT EXISTS Cirurgia_Realizada(
+	Id_Procedimento int NOT NULL,
+	id_Cirurgia smallint,
 	Complicacao varchar(255),
 	Gravidade varchar(10),
 	
-	CONSTRAINT chaveCirurgia PRIMARY KEY(Id_Procedimento),
+	CONSTRAINT chaveCirurgiaRealizada PRIMARY KEY(Id_Procedimento),
 	CONSTRAINT FK_Procedimento_Cirurgia FOREIGN KEY(Id_Procedimento) REFERENCES Procedimento(Id_Procedimento) 
-		ON DELETE CASCADE ON UPDATE CASCADE
+		ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT FK_Cirurgia FOREIGN KEY(id_Cirurgia) REFERENCES Cirurgia(id_Cirurgia) 
+		ON DELETE SET NULL ON UPDATE CASCADE
 	
 );
 CREATE TABLE IF NOT EXISTS Tipo_Exame(
@@ -151,10 +159,19 @@ CREATE TABLE IF NOT EXISTS Tipo_Exame(
 	
 	CONSTRAINT chaveTipoExame PRIMARY KEY(Id_TipoExame)
 );
-CREATE TABLE IF NOT EXISTS Exame(
+CREATE TABLE IF NOT EXISTS Exame_Categoria(
+	Id_Exame serial,
+	Nome_Exame varchar(30) unique,
+	Id_TipoExame smallint,
+	
+	CONSTRAINT chaveExameCategoria PRIMARY KEY(Id_Exame),
+	CONSTRAINT FK_TipoExame FOREIGN KEY(Id_TipoExame) REFERENCES Tipo_Exame(Id_TipoExame) 
+		ON DELETE CASCADE ON UPDATE CASCADE
+);
+CREATE TABLE IF NOT EXISTS Exame_Realizado(
 	Id_Procedimento int,
 	Nome_Exame varchar(20) NOT NULL,
-	Id_TipoExame int NOT NULL,
+	Id_TipoExame smallint NOT NULL,
 	
 	CONSTRAINT chaveExame PRIMARY KEY(Id_Procedimento),
 	CONSTRAINT FK_Procedimento_Cirurgia FOREIGN KEY(Id_Procedimento) REFERENCES Procedimento(Id_Procedimento) 
@@ -169,7 +186,7 @@ CREATE TABLE IF NOT EXISTS Resultado(
 	Resultado_Text varchar(50),
 	
 	CONSTRAINT chaveResultado PRIMARY KEY(id_resultado),
-	CONSTRAINT FK_Resultado_Exame FOREIGN KEY(Id_Procedimento) REFERENCES Exame(Id_Procedimento) 
+	CONSTRAINT FK_Resultado_Exame FOREIGN KEY(Id_Procedimento) REFERENCES Exame_Realizado(Id_Procedimento) 
 		ON DELETE SET NULL ON UPDATE CASCADE
 );
 CREATE TABLE IF NOT EXISTS Internacao(
@@ -197,3 +214,4 @@ CREATE TABLE IF NOT EXISTS Acompanha_Internacao(
 		ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT FK_Enfermeiro_Acompanha FOREIGN KEY(COREN) REFERENCES Enfermeiro(COREN) 
 		ON DELETE CASCADE ON UPDATE CASCADE
+	)
