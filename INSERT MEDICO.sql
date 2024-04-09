@@ -98,4 +98,5 @@
     (112296, 'MG', 'Thiago', 'Ribeiro', 17, 19),
     (112297, 'RS', 'Mariana', 'Almeida', 20, 2),
     (112298, 'SC', 'Rafael', 'Santos', 3, 5),
-    (112300, 'BA', 'Fernando', 'Oliveira', 9, 11);
+    (112300, 'BA', 'Fernando', 'Oliveira', 9, 11),
+	(112301, 'NB', 'Trafalgar', 'D. Law', 4, 18);
