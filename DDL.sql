@@ -213,4 +213,24 @@ CREATE TABLE IF NOT EXISTS Acompanha_Internacao(
 		ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT FK_Enfermeiro_Acompanha FOREIGN KEY(COREN) REFERENCES Enfermeiro(COREN) 
 		ON DELETE CASCADE ON UPDATE CASCADE
-	)
+);
+CREATE TABLE IF NOT EXISTS Consulta(
+	Id_Procedimento int not null,
+	Data_Retorno timestamp,
+	Motivo_Consulta varchar(30),
+	
+	CONSTRAINT chaveConsulta PRIMARY KEY(Id_Procedimento),
+	CONSTRAINT FK_Consulta_Procedimento FOREIGN KEY(Id_Procedimento) REFERENCES Procedimento(Id_Procedimento) 
+		ON DELETE CASCADE ON UPDATE CASCADE
+);
+CREATE TABLE IF NOT EXISTS Prescricao(
+	Id_Prescricao serial,
+	Id_Procedimento int NOT NULL,
+	Data_Validade timestamp not null,
+	Recomendacao_Uso varchar(30)
+	Nome_Medicamento_Presc varchar(30),
+	
+	CONSTRAINT chavePresc PRIMARY KEY(Id_Prescricao),
+	CONSTRAINT FK_PRESC_CONSULTA FOREIGN KEY(Id_Procedimento) REFERENCES Consulta(Id_Procedimento) 
+		ON DELETE SET NULL ON UPDATE CASCADE
+)
