@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS Medico (
 	Especialidade1_FK smallint,
 	Especialidade2_FK smallint CHECK (Especialidade2_FK <> Especialidade1_FK),
 	
-	CONSTRAINT chaveMedico PRIMARY KEY(Id_Medico)),
+	CONSTRAINT chaveMedico PRIMARY KEY(Id_Medico),
 	CONSTRAINT uniqueMedico UNIQUE(cod_crm, estado),
     CONSTRAINT tamanhoCRM CHECK (COD_CRM >= 0 AND COD_CRM < 1000000),
 	
@@ -229,10 +229,19 @@ CREATE TABLE IF NOT EXISTS Prescricao(
 	Id_Prescricao serial,
 	Id_Procedimento int NOT NULL,
 	Data_Validade timestamp not null,
-	Recomendacao_Medica varchar(45)
+	Recomendacao_Medica varchar(45),
 	Nome_Medicamento_Presc varchar(20),
 	
 	CONSTRAINT chavePresc PRIMARY KEY(Id_Prescricao),
 	CONSTRAINT FK_PRESC_CONSULTA FOREIGN KEY(Id_Procedimento) REFERENCES Consulta(Id_Procedimento) 
 		ON DELETE SET NULL ON UPDATE CASCADE
+);
+CREATE TABLE IF NOT EXISTS Ministra (
+	Id_Procedimento int,
+	Id_Medico smallint,
+	
+	CONSTRAINT FK_Ministra_Medico FOREIGN KEY(Id_Medico) REFERENCES Medico(Id_Medico) 
+		ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT FK_Ministra_Procedimento FOREIGN KEY(Id_Procedimento) REFERENCES Procedimento(Id_Procedimento) 
+		ON DELETE CASCADE ON UPDATE CASCADE
 )
