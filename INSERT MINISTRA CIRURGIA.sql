@@ -39,6 +39,20 @@ INSERT INTO ministra (Id_Procedimento, Id_Medico) VALUES (43, 23);
 INSERT INTO ministra (Id_Procedimento, Id_Medico) VALUES (54, 43);
 INSERT INTO ministra (Id_Procedimento, Id_Medico) VALUES (58, 3);
 INSERT INTO ministra (Id_Procedimento, Id_Medico) VALUES (80, 87);
+INSERT INTO ministra (Id_Procedimento, Id_Medico) VALUES (20, 68);
+INSERT INTO ministra (Id_Procedimento, Id_Medico) VALUES (57, 22);
+INSERT INTO ministra (Id_Procedimento, Id_Medico) VALUES (77, 22);
+INSERT INTO ministra (Id_Procedimento, Id_Medico) VALUES (87, 48);
+INSERT INTO ministra (Id_Procedimento, Id_Medico) VALUES (2, 93);
+INSERT INTO ministra (Id_Procedimento, Id_Medico) VALUES (21, 93);
+INSERT INTO ministra (Id_Procedimento, Id_Medico) VALUES (30, 10);
+INSERT INTO ministra (Id_Procedimento, Id_Medico) VALUES (71, 75);
+INSERT INTO ministra (Id_Procedimento, Id_Medico) VALUES (76, 50);
+INSERT INTO ministra (Id_Procedimento, Id_Medico) VALUES (86, 56);
+
+
+
+
 
 
 
