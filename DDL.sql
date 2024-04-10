@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS Especialidade(
 
 );
 CREATE TABLE IF NOT EXISTS Medico (
+	Id_Medico serial,
     COD_CRM numeric(6),
 	Estado char(2),
 	Nome_Medico varchar(15) NOT NULL,
@@ -65,7 +66,8 @@ CREATE TABLE IF NOT EXISTS Medico (
 	Especialidade1_FK smallint,
 	Especialidade2_FK smallint CHECK (Especialidade2_FK <> Especialidade1_FK),
 	
-	CONSTRAINT chaveMedico PRIMARY KEY(COD_CRM,Estado),
+	CONSTRAINT chaveMedico PRIMARY KEY(Id_Medico)),
+	CONSTRAINT uniqueMedico UNIQUE(cod_crm, estado),
     CONSTRAINT tamanhoCRM CHECK (COD_CRM >= 0 AND COD_CRM < 1000000),
 	
 	CONSTRAINT FK_Num_Esp1 FOREIGN KEY(Especialidade1_FK) REFERENCES Especialidade(Id_Especialidade)
