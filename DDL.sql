@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS Paciente (
     Nome_Paciente varchar(15) NOT NULL,
     Sobrenome_Paciente varchar(25) NOT NULL,
     Data_Nascimento date NOT NULL,
-    GeneroPaciente smallint,
+    Id_Paciente smallint,
 	
 	CONSTRAINT RegistroPaciente PRIMARY KEY(Num_Registro),
 	CONSTRAINT GeneroPaciente_FK FOREIGN KEY(GeneroPaciente) REFERENCES Genero(Id_Genero) 
