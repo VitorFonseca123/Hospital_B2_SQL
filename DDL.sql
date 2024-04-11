@@ -230,7 +230,7 @@ CREATE TABLE IF NOT EXISTS Consulta(
 CREATE TABLE IF NOT EXISTS Prescricao(
 	Id_Prescricao serial,
 	Id_Procedimento int NOT NULL,
-	Data_Validade timestamp not null,
+	Data_Validade date not null,
 	Recomendacao_Medica varchar(45),
 	Nome_Medicamento_Presc varchar(20),
 	
