@@ -91,7 +91,8 @@ CREATE TABLE IF NOT EXISTS Material(
 	Lote varchar(10),
 	Qtd_Atual smallint,
 	
-	CONSTRAINT chaveMaterial PRIMARY KEY(Id_Material)
+	CONSTRAINT chaveMaterial PRIMARY KEY(Id_Material),
+	CONSTRAINT uniqueMaterial UNIQUE(lote, marca)
 );
 CREATE TABLE IF NOT EXISTS Medicamento(
 	Id_Material int,
@@ -125,7 +126,8 @@ CREATE TABLE IF NOT EXISTS Procedimento(
 	
 	CONSTRAINT chaveProcedimento PRIMARY KEY(Id_Procedimento),
 	CONSTRAINT FK_Procedimento_Paciente FOREIGN KEY(Num_Registro_Pac) REFERENCES Paciente(Num_Registro ) 
-		ON DELETE CASCADE ON UPDATE CASCADE
+		ON DELETE CASCADE ON UPDATE CASCADE,
+	   CONSTRAINT Data_Hora_Saida_Maior_Que_Entrada CHECK (Data_Hora_Saida > Data_Hora_Entrada)
 );
 CREATE TABLE IF NOT EXISTS Utiliza_Procedimento(
 	Id_Material int NOT NULL,
@@ -244,4 +246,4 @@ CREATE TABLE IF NOT EXISTS Ministra (
 		ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT FK_Ministra_Procedimento FOREIGN KEY(Id_Procedimento) REFERENCES Procedimento(Id_Procedimento) 
 		ON DELETE CASCADE ON UPDATE CASCADE
-)
+);
