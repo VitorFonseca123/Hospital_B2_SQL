@@ -6,7 +6,7 @@ WITH new_procedimento AS (
 )
 INSERT INTO Consulta (Id_Procedimento,Data_Retorno, Motivo_Consulta)
 SELECT Id_Procedimento, 
-	 CURRENT_TIMESTAMP - INTERVAL '30 days' * RANDOM(),
+	 current_date - INTERVAL '30 days' * RANDOM(),
 	 'Dor de cabeça'
 	 
 FROM new_procedimento;
@@ -20,6 +20,6 @@ WITH new_procedimentos AS (
 )
 INSERT INTO Consulta (Id_Procedimento,Data_Retorno, Motivo_Consulta)
 	SELECT Id_Procedimento, 
-	 CURRENT_TIMESTAMP - INTERVAL '30 days' * RANDOM(),
+	 current_date - INTERVAL '30 days' * RANDOM(),
 	 'Motivo' || FLOOR(RANDOM()*100)+1
 FROM new_procedimentos;
