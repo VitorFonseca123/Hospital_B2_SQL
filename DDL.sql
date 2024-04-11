@@ -220,7 +220,7 @@ CREATE TABLE IF NOT EXISTS Acompanha_Internacao(
 );
 CREATE TABLE IF NOT EXISTS Consulta(
 	Id_Procedimento int not null,
-	Data_Retorno timestamp,
+	Data_Retorno date,
 	Motivo_Consulta varchar(30),
 	
 	CONSTRAINT chaveConsulta PRIMARY KEY(Id_Procedimento),
