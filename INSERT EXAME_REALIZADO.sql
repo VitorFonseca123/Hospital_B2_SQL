@@ -1,7 +1,6 @@
 WITH new_procedimentos AS (
-    INSERT INTO Procedimento (num_registro_pac, Data_Hora_Entrada, Data_Hora_Saida)
-    SELECT FLOOR(RANDOM() * 100) + 1, CURRENT_TIMESTAMP - INTERVAL '10 days' * RANDOM(),
-           CURRENT_TIMESTAMP - INTERVAL '10 days' * RANDOM()
+    INSERT INTO Procedimento (num_registro_pac, Data_Hora_Entrada)
+    SELECT FLOOR(RANDOM() * 100) + 1, CURRENT_TIMESTAMP - INTERVAL '10 days' * RANDOM()
     FROM generate_series(1, 100)
     RETURNING Id_Procedimento
 )
