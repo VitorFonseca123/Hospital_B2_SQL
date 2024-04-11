@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS Material(
 	Qtd_Atual smallint,
 	
 	CONSTRAINT chaveMaterial PRIMARY KEY(Id_Material),
-	CONSTRAINT uniqueMaterial UNIQUE(lote, marca)
+	CONSTRAINT uniqueMaterial UNIQUE(lote, marca_registrada)
 );
 CREATE TABLE IF NOT EXISTS Medicamento(
 	Id_Material int,
