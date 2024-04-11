@@ -1,4 +1,4 @@
-    INSERT INTO Medico VALUES
+    INSERT INTO Medico (COD_CRM, Estado, Nome_Medico, Sobrenome_Medico, Especialidade1_FK, Especialidade2_FK) VALUES
 	(123456, 'SP', 'Joao', 'Silva', 1, 2),
     (234567, 'RJ', 'Maria', 'Santos', 3, 4),
     (345678, 'MG', 'Pedro', 'Oliveira', 5, 6),
