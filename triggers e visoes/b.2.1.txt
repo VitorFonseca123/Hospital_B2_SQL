@@ -1,0 +1,28 @@
+CREATE OR REPLACE FUNCTION inserir_enfermeiro() RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO Acompanha_Internacao (coren, id_procedimento)
+    SELECT coren, NEW.id_procedimento
+    FROM enfermeiro
+    WHERE coren NOT IN (select enfermeiro.coren from enfermeiro
+where enfermeiro.coren not in (SELECT enfermeiro.COREN FROM procedimento
+                        JOIN internacao ON internacao.id_procedimento = procedimento.id_procedimento
+                        JOIN acompanha_internacao ON acompanha_internacao.id_procedimento = internacao.id_procedimento
+                        JOIN enfermeiro ON enfermeiro.coren = acompanha_internacao.coren
+                        WHERE procedimento.data_hora_saida IS NULL
+                        GROUP BY enfermeiro.COREN
+                        HAVING count(data_hora_entrada) = 9)
+)
+    AND coren NOT IN (SELECT coren FROM acompanha_internacao ai where ai.id_procedimento = new.id_Procedimento)
+    LIMIT 3;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER trigger_alocar_enfermeiros_grave
+BEFORE UPDATE OF estado_paciente ON Internacao
+FOR EACH ROW
+WHEN (LOWER(NEW.estado_paciente) LIKE LOWER('%grave%'))
+EXECUTE FUNCTION inserir_enfermeiro();
+
+

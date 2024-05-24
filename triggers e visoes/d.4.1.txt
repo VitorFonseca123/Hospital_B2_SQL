@@ -1,0 +1,4 @@
+SELECT DATE(data_hora_entrada) AS dia, COUNT(*) AS total_procedimentos
+FROM Consultas_ultimos_30_dias
+GROUP BY DATE(data_hora_entrada)
+ORDER BY dia;

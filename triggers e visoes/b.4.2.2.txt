@@ -1,0 +1,9 @@
+SELECT * FROM material
+ORDER BY id_material ASC
+
+UPDATE material
+SET qtd_atual = qtd_atual - (qtd_atual +1)
+WHERE id_material = 3;
+
+SELECT * FROM material
+ORDER BY id_material ASC

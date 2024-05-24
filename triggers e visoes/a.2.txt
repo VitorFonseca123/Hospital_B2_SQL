@@ -1,0 +1,9 @@
+create assertion restricao_10_pacientes check
+(not exists (SELECT enfermeiro.COREN,COUNT(data_hora_entrada) FROM procedimento
+JOIN internacao ON internacao.id_procedimento = procedimento.id_procedimento
+JOIN acompanha_internacao ON acompanha_internacao.id_procedimento = internacao.id_procedimento
+JOIN enfermeiro ON enfermeiro.coren = acompanha_internacao.coren
+WHERE procedimento.data_hora_saida IS NULL
+GROUP BY enfermeiro.COREN
+HAVING count(data_hora_entrada) <= 10
+))

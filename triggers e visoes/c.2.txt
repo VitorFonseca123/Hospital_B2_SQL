@@ -1,0 +1,7 @@
+CREATE VIEW Visao_Atendente (nome_paciente, num_registro, cpf, data_hora_entrada, data_hora_saida, id_medico) AS (
+SELECT pac.nome_paciente, pac.num_registro, pac.cpf, proc.data_hora_entrada, proc.data_hora_saida, med.id_medico
+FROM paciente pac, procedimento proc, ministra mi, Medico med
+WHERE pac.num_registro = proc.num_registro_pac 
+AND proc.id_procedimento = mi.id_procedimento 
+AND mi.id_medico = med.id_medico
+)

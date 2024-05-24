@@ -1,0 +1,158 @@
+WITH novos_procedimentos AS (
+    INSERT INTO procedimento (Num_Registro_Pac, Data_Hora_Entrada)
+  SELECT
+    FLOOR(RANDOM() * 100) + 1,
+    CURRENT_TIMESTAMP - INTERVAL '10 days' * RANDOM()
+  FROM generate_series(1, 10)
+  RETURNING Id_Procedimento, Num_Registro_Pac
+)
+INSERT INTO internacao (Id_Procedimento, Motivo_Internacao, Estado_Paciente)
+SELECT
+  np.Id_Procedimento,
+  'Motivo da internação ' || ROW_NUMBER() OVER () || ' para o paciente ' || np.Num_Registro_Pac,
+  CASE
+    WHEN RANDOM() < 0.2 THEN 'Grave'
+    WHEN RANDOM() < 0.4 THEN 'Estável'
+    WHEN RANDOM() < 0.6 THEN 'Regular'
+    ELSE 'Bem'
+  END
+FROM novos_procedimentos np;
+
+
+
+
+INSERT INTO acompanha_Internacao (COREN, Id_Procedimento)
+SELECT enfermeiro.coren, 724
+FROM enfermeiro
+WHERE enfermeiro.coren NOT IN (
+    SELECT enfermeiro.COREN
+    FROM procedimento
+    JOIN internacao ON internacao.id_procedimento = procedimento.id_procedimento
+    JOIN acompanha_internacao ON acompanha_internacao.id_procedimento = internacao.id_procedimento
+    JOIN enfermeiro ON enfermeiro.coren = acompanha_internacao.coren
+    WHERE procedimento.data_hora_saida IS NULL
+    GROUP BY enfermeiro.COREN
+    HAVING count(data_hora_entrada) = 9
+);
+INSERT INTO acompanha_Internacao (COREN, Id_Procedimento)
+SELECT enfermeiro.coren, 725
+FROM enfermeiro
+WHERE enfermeiro.coren NOT IN (
+    SELECT enfermeiro.COREN
+    FROM procedimento
+    JOIN internacao ON internacao.id_procedimento = procedimento.id_procedimento
+    JOIN acompanha_internacao ON acompanha_internacao.id_procedimento = internacao.id_procedimento
+    JOIN enfermeiro ON enfermeiro.coren = acompanha_internacao.coren
+    WHERE procedimento.data_hora_saida IS NULL
+    GROUP BY enfermeiro.COREN
+    HAVING count(data_hora_entrada) = 9
+);
+INSERT INTO acompanha_Internacao (COREN, Id_Procedimento)
+SELECT enfermeiro.coren, 726
+FROM enfermeiro
+WHERE enfermeiro.coren NOT IN (
+    SELECT enfermeiro.COREN
+    FROM procedimento
+    JOIN internacao ON internacao.id_procedimento = procedimento.id_procedimento
+    JOIN acompanha_internacao ON acompanha_internacao.id_procedimento = internacao.id_procedimento
+    JOIN enfermeiro ON enfermeiro.coren = acompanha_internacao.coren
+    WHERE procedimento.data_hora_saida IS NULL
+    GROUP BY enfermeiro.COREN
+    HAVING count(data_hora_entrada) = 9
+);
+INSERT INTO acompanha_Internacao (COREN, Id_Procedimento)
+SELECT enfermeiro.coren, 727
+FROM enfermeiro
+WHERE enfermeiro.coren NOT IN (
+    SELECT enfermeiro.COREN
+    FROM procedimento
+    JOIN internacao ON internacao.id_procedimento = procedimento.id_procedimento
+    JOIN acompanha_internacao ON acompanha_internacao.id_procedimento = internacao.id_procedimento
+    JOIN enfermeiro ON enfermeiro.coren = acompanha_internacao.coren
+    WHERE procedimento.data_hora_saida IS NULL
+    GROUP BY enfermeiro.COREN
+    HAVING count(data_hora_entrada) = 9
+);
+INSERT INTO acompanha_Internacao (COREN, Id_Procedimento)
+SELECT enfermeiro.coren, 728
+FROM enfermeiro
+WHERE enfermeiro.coren NOT IN (
+    SELECT enfermeiro.COREN
+    FROM procedimento
+    JOIN internacao ON internacao.id_procedimento = procedimento.id_procedimento
+    JOIN acompanha_internacao ON acompanha_internacao.id_procedimento = internacao.id_procedimento
+    JOIN enfermeiro ON enfermeiro.coren = acompanha_internacao.coren
+    WHERE procedimento.data_hora_saida IS NULL
+    GROUP BY enfermeiro.COREN
+    HAVING count(data_hora_entrada) = 9
+);
+INSERT INTO acompanha_Internacao (COREN, Id_Procedimento)
+SELECT enfermeiro.coren, 729
+FROM enfermeiro
+WHERE enfermeiro.coren NOT IN (
+    SELECT enfermeiro.COREN
+    FROM procedimento
+    JOIN internacao ON internacao.id_procedimento = procedimento.id_procedimento
+    JOIN acompanha_internacao ON acompanha_internacao.id_procedimento = internacao.id_procedimento
+    JOIN enfermeiro ON enfermeiro.coren = acompanha_internacao.coren
+    WHERE procedimento.data_hora_saida IS NULL
+    GROUP BY enfermeiro.COREN
+    HAVING count(data_hora_entrada) = 9
+);
+INSERT INTO acompanha_Internacao (COREN, Id_Procedimento)
+SELECT enfermeiro.coren, 730
+FROM enfermeiro
+WHERE enfermeiro.coren NOT IN (
+    SELECT enfermeiro.COREN
+    FROM procedimento
+    JOIN internacao ON internacao.id_procedimento = procedimento.id_procedimento
+    JOIN acompanha_internacao ON acompanha_internacao.id_procedimento = internacao.id_procedimento
+    JOIN enfermeiro ON enfermeiro.coren = acompanha_internacao.coren
+    WHERE procedimento.data_hora_saida IS NULL
+    GROUP BY enfermeiro.COREN
+    HAVING count(data_hora_entrada) = 9
+);
+INSERT INTO acompanha_Internacao (COREN, Id_Procedimento)
+SELECT enfermeiro.coren, 731
+FROM enfermeiro
+WHERE enfermeiro.coren NOT IN (
+    SELECT enfermeiro.COREN
+    FROM procedimento
+    JOIN internacao ON internacao.id_procedimento = procedimento.id_procedimento
+    JOIN acompanha_internacao ON acompanha_internacao.id_procedimento = internacao.id_procedimento
+    JOIN enfermeiro ON enfermeiro.coren = acompanha_internacao.coren
+    WHERE procedimento.data_hora_saida IS NULL
+    GROUP BY enfermeiro.COREN
+    HAVING count(data_hora_entrada) = 9
+);
+INSERT INTO acompanha_Internacao (COREN, Id_Procedimento)
+SELECT enfermeiro.coren, 732
+FROM enfermeiro
+WHERE enfermeiro.coren NOT IN (
+    SELECT enfermeiro.COREN
+    FROM procedimento
+    JOIN internacao ON internacao.id_procedimento = procedimento.id_procedimento
+    JOIN acompanha_internacao ON acompanha_internacao.id_procedimento = internacao.id_procedimento
+    JOIN enfermeiro ON enfermeiro.coren = acompanha_internacao.coren
+    WHERE procedimento.data_hora_saida IS NULL
+    GROUP BY enfermeiro.COREN
+    HAVING count(data_hora_entrada) = 9
+);
+INSERT INTO acompanha_Internacao (COREN, Id_Procedimento)
+SELECT enfermeiro.coren, 733
+FROM enfermeiro
+WHERE enfermeiro.coren NOT IN (
+    SELECT enfermeiro.COREN
+    FROM procedimento
+    JOIN internacao ON internacao.id_procedimento = procedimento.id_procedimento
+    JOIN acompanha_internacao ON acompanha_internacao.id_procedimento = internacao.id_procedimento
+    JOIN enfermeiro ON enfermeiro.coren = acompanha_internacao.coren
+    WHERE procedimento.data_hora_saida IS NULL
+    GROUP BY enfermeiro.COREN
+    HAVING count(data_hora_entrada) = 9
+);
+
+
+UPDATE internacao
+set estado_paciente = 'grave'
+where id_procedimento = 703

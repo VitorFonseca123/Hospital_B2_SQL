@@ -1,0 +1,4 @@
+SELECT cud.cod_crm, cud.nome_medico, cud.sobrenome_medico, AVG(cud.data_hora_saida - cud.data_hora_entrada)
+FROM Consultas_ultimos_30_dias AS cud
+GROUP BY cud.cod_crm,cud.nome_medico, cud.sobrenome_medico
+ORDER BY AVG(cud.data_hora_saida - cud.data_hora_entrada) DESC

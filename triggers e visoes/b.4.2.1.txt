@@ -1,0 +1,7 @@
+UPDATE FROM material
+set qtd_atual = 0
+where id_material = 1
+
+
+SELECT * FROM material
+ORDER BY id_material ASC

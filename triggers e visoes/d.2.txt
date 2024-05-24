@@ -1,0 +1,9 @@
+CREATE VIEW Consultas_ultimos_30_dias AS (
+SELECT pac.num_registro, pac.nome_paciente, pac.sobrenome_paciente, proc.id_procedimento, proc.data_hora_entrada, proc.data_hora_saida, med.cod_CRM, med.nome_medico, med.sobrenome_medico, mat.nome_material, mat.lote
+FROM paciente pac
+JOIN procedimento proc ON pac.num_registro = proc.num_registro_pac
+JOIN ministra min ON proc.id_procedimento = min.id_procedimento
+JOIN medico med ON min.id_medico = med.id_medico
+JOIN utiliza_procedimento up ON proc.id_procedimento = up.id_procedimento
+JOIN material mat ON up.id_material  = mat.id_material
+where proc.data_hora_entrada >= NOW() - INTERVAL '30 days'

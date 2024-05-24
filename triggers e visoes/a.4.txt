@@ -1,0 +1,32 @@
+CREATE OR REPLACE FUNCTION check_restricao_10_pacientes() RETURNS trigger AS $$
+DECLARE
+    pacientes_count INTEGER;
+BEGIN
+    SELECT COUNT(data_hora_entrada)
+    INTO pacientes_count
+    FROM procedimento
+    JOIN internacao ON internacao.id_procedimento = procedimento.id_procedimento
+    JOIN acompanha_internacao ON acompanha_internacao.id_procedimento = internacao.id_procedimento
+    JOIN enfermeiro ON enfermeiro.coren = acompanha_internacao.coren
+    WHERE procedimento.data_hora_saida IS NULL
+    GROUP BY enfermeiro.COREN
+    HAVING count(data_hora_entrada) >= 10;
+
+
+   
+    IF pacientes_count >= 10 THEN
+        RAISE EXCEPTION 'Não é permitido que um enfermeiro tenha 10 ou mais pacientes internados ao mesmo tempo.';
+    END IF;
+
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+
+CREATE TRIGGER trigger_restricao_10_pacientes
+AFTER INSERT OR UPDATE ON acompanha_internacao
+FOR EACH ROW
+EXECUTE FUNCTION check_restricao_10_pacientes();

@@ -1,0 +1,15 @@
+CREATE OR REPLACE FUNCTION apagarMaterial() RETURNS TRIGGER AS $$
+BEGIN
+    DELETE FROM material
+    WHERE id_material IN (
+        SELECT id_material FROM material_zerado WHERE qtd_atual < 1
+    );
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_material_vazio
+AFTER UPDATE ON material
+REFERENCING NEW TABLE AS material_zerado
+FOR EACH STATEMENT
+EXECUTE FUNCTION apagarMaterial();

@@ -1,0 +1,7 @@
+select * from internacao
+join acompanha_internacao on acompanha_internacao.id_procedimento = internacao.id_procedimento
+where internacao.id_procedimento = 103
+
+UPDATE internacao
+set estado_paciente = 'Bem'
+where id_procedimento = 103

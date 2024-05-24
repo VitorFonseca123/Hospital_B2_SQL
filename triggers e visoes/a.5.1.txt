@@ -1,0 +1,33 @@
+WITH novos_procedimentos AS (
+  	INSERT INTO procedimento (Num_Registro_Pac, Data_Hora_Entrada)
+  SELECT
+    FLOOR(RANDOM() * 100) + 1,
+    CURRENT_TIMESTAMP - INTERVAL '10 days' * RANDOM()
+  FROM generate_series(1, 10)
+  RETURNING Id_Procedimento, Num_Registro_Pac
+)
+INSERT INTO internacao (Id_Procedimento, Motivo_Internacao, Estado_Paciente)
+SELECT
+  np.Id_Procedimento,
+  'Motivo da internação ' || ROW_NUMBER() OVER () || ' para o paciente ' || np.Num_Registro_Pac,
+  CASE
+    WHEN RANDOM() < 0.2 THEN 'Grave'
+    WHEN RANDOM() < 0.4 THEN 'Estável'
+    WHEN RANDOM() < 0.6 THEN 'Regular'
+    ELSE 'Bem'
+  END
+FROM novos_procedimentos np;
+
+-- alocação de um único  enfermeiro para as respectivas internações:
+
+INSERT INTO acompanha_Internacao (COREN, Id_Procedimento) VALUES ('442755ENF', 712);
+INSERT INTO acompanha_Internacao (COREN, Id_Procedimento) VALUES ('442755ENF', 711);
+INSERT INTO acompanha_Internacao (COREN, Id_Procedimento) VALUES ('442755ENF', 710);
+INSERT INTO acompanha_Internacao (COREN, Id_Procedimento) VALUES ('442755ENF', 709);
+INSERT INTO acompanha_Internacao (COREN, Id_Procedimento) VALUES ('442755ENF', 708);
+INSERT INTO acompanha_Internacao (COREN, Id_Procedimento) VALUES ('442755ENF', 706);
+INSERT INTO acompanha_Internacao (COREN, Id_Procedimento) VALUES ('442755ENF', 705);
+INSERT INTO acompanha_Internacao (COREN, Id_Procedimento) VALUES ('442755ENF', 704);
+INSERT INTO acompanha_Internacao (COREN, Id_Procedimento) VALUES ('442755ENF', 703);
+INSERT INTO acompanha_Internacao (COREN, Id_Procedimento) VALUES ('442755ENF', 702);
+INSERT INTO acompanha_Internacao (COREN, Id_Procedimento) VALUES ('442755ENF', 701);
